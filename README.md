@@ -29,9 +29,11 @@ exist in your AWS account.
 That AMI ID is the one that should be used as the value for the required
 `ami_id` variable.
 
-### AWS Route53
+### AWS Route53 Service (optional)
 
-The AWS Route53 service is required for this module.
+If you wish to register the instances FQDN, the AWS Route53 service is also required to be enabled and properly configured.
+
+To register the instances FQDN on AWS Route53 service you need to set the `private_zone_id` and/or `public_zone_id` variable(s).
 
 ## Module Input Variables
 
@@ -43,8 +45,8 @@ The AWS Route53 service is required for this module.
 - `name` - The main name that will be used for the Apache Spark instance(s). *[default value: 'spark']*
 [comment]: # (- `number_of_masters` - Number of Apache Spark Master instances. NOT USED YET." *[default value: 1]*.)
 - `prefix` - A prefix to prepend to the Apache Spark instance(s) name. *[default value: '']*
-- `private_zone_id` - **[required]** The ID of the hosted zone for the private DNS record(s).
-- `public_zone_id` - The ID of the hosted zone for the public DNS record(s). *[default value: '']*
+- `private_zone_id` - The ID of the hosted zone for the private DNS record(s). *[default value: '']*
+- `public_zone_id` - The ID of the hosted zone for the public DNS record(s). Requires `associate_public_ip_address` to be set to 'true'. *[default value: '']*
 - `spark_master_heap_size` - The heap size for the Apache Spark Master instance(s) (e.g.: '1G'). *[default value: '']*
 - `spark_master_instance_type` - The type of instance to use for the Apache Spark Master instance(s). *[default value: 't2.small']*
 - `spark_master_root_volume_iops` - The amount of provisioned IOPS (for 'io1' type only). *[default value: 0]*

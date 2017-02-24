@@ -99,7 +99,7 @@ resource "template_file" "worker" {
   vars {
     domain              = "${var.domain}"
     hostname            = "${var.prefix}${var.name}-worker"
-    spark_args          = "${var.spark_worker_heap_size == "" ? var.spark_worker_heap_size : "-m var.spark_worker_heap_size"} -s ${element(aws_route53_record.private.*.fqdn, 0)} -W 60"
+    spark_args          = "${var.spark_worker_heap_size == "" ? var.spark_worker_heap_size : "-m var.spark_worker_heap_size"} -s ${var.private_zone_id != "" ? element(aws_route53_record.private.*.fqdn, 0) : element(aws_instance.master.*.private_ip, 0)} -W 60"
     spark_instance_type = "worker"
   }
 }
@@ -109,7 +109,7 @@ resource "template_file" "worker" {
 #
 
 resource "aws_route53_record" "private" {
-  count   = "${var.number_of_masters}"
+  count   = "${var.private_zone_id != "" ? var.number_of_masters : 0}"
   name    = "${var.prefix}${var.name}-master${format("%02d", count.index + 1)}"
   records = ["${element(aws_instance.master.*.private_ip, count.index)}"]
   ttl     = "${var.ttl}"
@@ -118,7 +118,7 @@ resource "aws_route53_record" "private" {
 }
 
 resource "aws_route53_record" "public" {
-  count   = "${var.associate_public_ip_address ? var.number_of_masters : 0}"
+  count   = "${var.public_zone_id != "" && var.associate_public_ip_address ? var.number_of_masters : 0}"
   name    = "${var.prefix}${var.name}-master${format("%02d", count.index + 1)}"
   records = ["${element(aws_instance.master.*.public_ip, count.index)}"]
   ttl     = "${var.ttl}"

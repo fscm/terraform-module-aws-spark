@@ -57,6 +57,7 @@ variable "prefix" {
 
 variable "private_zone_id" {
   description = "The ID of the hosted zone for the private DNS record(s)."
+  default     = ""
   type        = "string"
 }
 
