@@ -21,7 +21,7 @@ resource "aws_instance" "master" {
   instance_type               = "${var.spark_master_instance_type}"
   key_name                    = "${var.keyname}"
   subnet_id                   = "${element(var.subnet_ids, count.index - 1)}"
-  user_data                   = "${element(template_file.master.*.rendered, count.index)}"
+  user_data                   = "${element(data.template_file.master.*.rendered, count.index)}"
   vpc_security_group_ids      = ["${aws_security_group.spark.id}","${aws_security_group.spark_intra.id}","${var.extra_security_group_id}"]
   root_block_device {
     volume_size = "${var.spark_master_root_volume_size}"
@@ -35,7 +35,7 @@ resource "aws_instance" "master" {
   }
 }
 
-resource "template_file" "master" {
+data "template_file" "master" {
   count    = "${var.number_of_masters}"
   template = "${file("${path.module}/templates/cloud-config/init.tpl")}"
   vars {
@@ -53,7 +53,7 @@ resource "aws_launch_configuration" "worker" {
   key_name                    = "${var.keyname}"
   name_prefix                 = "${var.prefix}${var.name}-worker-"
   security_groups             = ["${aws_security_group.spark.id}","${aws_security_group.spark_intra.id}","${var.extra_security_group_id}"]
-  user_data                   = "${template_file.worker.rendered}"
+  user_data                   = "${data.template_file.worker.rendered}"
   lifecycle {
     create_before_destroy = true
   }
@@ -94,7 +94,7 @@ resource "aws_autoscaling_group" "worker" {
   }
 }
 
-resource "template_file" "worker" {
+data "template_file" "worker" {
   template = "${file("${path.module}/templates/cloud-config/init.tpl")}"
   vars {
     domain              = "${var.domain}"
