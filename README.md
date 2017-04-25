@@ -74,9 +74,9 @@ module "my_spark_cluster" {
   name                       = "spark"
   prefix                     = "mycompany-"
   private_zone_id            = "Z3K95H7K1S3F"
-  spark_worker_max_instances = "2"
   spark_worker_max_instances = "3"
-  subnet_ids                 = ["subnet-0zfg04s2,subnet-6jm2z54q"]
+  spark_worker_min_instances = "2"
+  subnet_ids                 = ["subnet-0zfg04s2", "subnet-6jm2z54q"]
   vpc_id                     = "vpc-3f0tb39m"
 }
 ```
