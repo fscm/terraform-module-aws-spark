@@ -15,7 +15,7 @@ write_files:
   - content: |
       #!/bin/bash
       echo "=== Setting up Apache Spark Instance ==="
-      echo "  instance: ${fqdn}"
+      echo "  instance: ${hostname}.${domain}"
       sudo /usr/local/bin/spark_config ${spark_args} -E -S ${spark_instance_type}
       echo "=== All Done ==="
     path: /tmp/setup_spark.sh
