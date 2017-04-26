@@ -84,7 +84,7 @@ module "my_spark_cluster" {
 ## Outputs
 
 - `master_fqdn` - **[type: list]** List of FQDNs of the Apache Spark Master instance(s).
-- `master_hostnames` - **[type: list]** List of hostnames of the Apache Spark Master instance(s).
+- `master_hostname` - **[type: list]** List of hostnames of the Apache Spark Master instance(s).
 - `master_id` - **[type: list]** List of IDs of the Apache Spark Master instance(s).
 - `master_ip` - **[type: list]** List of private IP address of the Apache Spark Master instance(s).
 - `security_group` - **[type: string]** ID of the security group to be added to every instance that requires access to the Apache Spark Cluster.
@@ -92,7 +92,7 @@ module "my_spark_cluster" {
 
 ## Cluster Access
 
-This modules provides A security group that will allow access to the Apache
+This modules provides a security group that will allow access to the Apache
 Spark cluster instances.
 
 That group will allow access to the following ports to all the AWS EC2

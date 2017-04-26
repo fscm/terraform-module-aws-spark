@@ -15,7 +15,7 @@ output "master_fqdn" {
   value     = ["${aws_route53_record.private.*.fqdn}"]
 }
 
-output "master_hostnames" {
+output "master_hostname" {
   sensitive = false
   value     = ["${aws_instance.master.*.private_dns}"]
 }
