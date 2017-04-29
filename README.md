@@ -51,16 +51,16 @@ To register the instances FQDN on AWS Route53 service you need to set the `priva
 - `spark_master_instance_type` - The type of instance to use for the Apache Spark Master instance(s). *[default value: 't2.small']*
 - `spark_master_root_volume_iops` - The amount of provisioned IOPS (for 'io1' type only). *[default value: 0]*
 - `spark_master_root_volume_size` - The volume size in gigabytes. *[default value: '8']*
-- `spark_master_root_volume_type` - The volume type. Must be one of 'standard' (magnetic), 'gp2' (general purpose SSD), or 'io1' (provisioned IOPS SSD). *[default value: gp2]*
+- `spark_master_root_volume_type` - The volume type. Must be one of 'standard' (magnetic), 'gp2' (general purpose SSD), or 'io1' (provisioned IOPS SSD). *[default value: 'gp2']*
 - `spark_worker_heap_size` - The heap size for the Apache Spark Worker instance(s) (e.g.: '1G'). *[default value: '']*
 - `spark_worker_instance_type` - The type of instance to use for the Apache Spark Worker instance(s). *[default value: 't2.small']*
 - `spark_worker_max_instances` - Maximum number of Apache Spark Worker instances in the cluster. *[default value: '1']*
 - `spark_worker_min_instances` - "Minimum number of Apache Spark Worker instances in the cluster. *[default value: '1']*
 - `spark_worker_root_volume_iops` - The amount of provisioned IOPS (for 'io1' type only). *[default value: 0]*
 - `spark_worker_root_volume_size` - The volume size in gigabytes. *[default value: '8']*
-- `spark_worker_root_volume_type` - The volume type. Must be one of 'standard' (magnetic), 'gp2' (general purpose SSD), or 'io1' (provisioned IOPS SSD). *[default value: gp2]*
+- `spark_worker_root_volume_type` - The volume type. Must be one of 'standard' (magnetic), 'gp2' (general purpose SSD), or 'io1' (provisioned IOPS SSD). *[default value: 'gp2']*
 - `subnet_ids` - **[required]** List of Subnet IDs to launch the instance(s) in (e.g.: ['subnet-0zfg04s2','subnet-6jm2z54q']).
-- `ttl` - The TTL (in seconds) for the DNS record(s)." *[default value: '600']*
+- `ttl` - The TTL (in seconds) for the DNS record(s). *[default value: '600']*
 - `vpc_id` - **[required]** The VPC ID for the security group(s).
 
 ## Usage
