@@ -118,6 +118,9 @@ own security group and add it to the Apache Spark cluster instances using the
 4. Push to the branch: `git push origin my-new-feature`
 5. Submit a pull request
 
+Please read the [CONTRIBUTING.md](CONTRIBUTING.md) file for more details on how
+to contribute to this project.
+
 ## Versioning
 
 This project uses [SemVer](http://semver.org/) for versioning. For the versions
